@@ -1,13 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useFonts, Oswald_400Regular } from '@expo-google-fonts/oswald';
+import { AppLoading } from 'expo';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+  let [fontsLoaded, error] = useFonts ({
+    Oswald_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text style={{fontSize: 24, fontWeight: 'bold'}}>Applying custom fonts with expo</Text>
+        <Text style={{fontSize: 32, fontFamily: 'Oswald_400Regular'}}>Oswald 400 Regular</Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
